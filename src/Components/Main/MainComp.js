@@ -133,6 +133,7 @@ export const Country = styled.div`
   width: 100%;
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
   margin: 1rem;
+  cursor: pointer;
 `;
 
 export const Flag = styled.img`

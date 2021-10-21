@@ -6,6 +6,7 @@ import DarkMode from "./Themes/Dark";
 import LightMode from "./Themes/Light";
 import GlobalStyle from "./Themes/GloStyles";
 import axios from "axios";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 const Themes = {
   Light: LightMode,
@@ -45,13 +46,15 @@ function App() {
     }
   };
   return (
-    <ThemeProvider theme={Themes[theme]}>
-      <GlobalStyle />
-      <div className="App">
-        <Navbar theme={theme} setTheme={setTheme} />
-        {data === "" ? <h1>We are looooading</h1> : <MainComp data={data} />}
-      </div>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={Themes[theme]}>
+        <GlobalStyle />
+        <div className="App">
+          <Navbar theme={theme} setTheme={setTheme} />
+          {data === "" ? <h1>We are looooading</h1> : <MainComp data={data} />}
+        </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 
