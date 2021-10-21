@@ -137,6 +137,7 @@ export const Country = styled.div`
 
 export const Flag = styled.img`
   width: 100%;
+  height: 150px;
   color: ${(props) => props.theme.colorText};
 `;
 export const Infos = styled.div`

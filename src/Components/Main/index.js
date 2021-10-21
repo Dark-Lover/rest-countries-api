@@ -11,6 +11,7 @@ const MainComp = ({ data }) => {
   useEffect(() => {
     console.log("Main comp");
   }, []);
+  console.log(data);
   return (
     <MainWrapper>
       <Search>
@@ -51,13 +52,14 @@ const MainComp = ({ data }) => {
             <Infos>
               <CountryName>{el.name.common}</CountryName>
               <Detail>
-                <Info>Population:</Info> 81.770.900
+                <Info>Population:</Info> {(el.population / 1000000).toFixed(2)}{" "}
+                M hab
               </Detail>
               <Detail>
-                <Info>Region:</Info> Europe
+                <Info>Region:</Info> {el.region}
               </Detail>
               <Detail>
-                <Info>Capital:</Info> Berlin
+                <Info>Capital:</Info> {el.capital}
               </Detail>
             </Infos>
           </Country>
