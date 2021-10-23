@@ -8,41 +8,24 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const initialState = {
-  // countries: "",
-  filter: "",
+  firstVisit: true,
+  filter: [],
 };
+
+let temp = [];
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "Africa":
-      console.log("mama africa");
-      return {
-        countries: action.data,
-        filter: filterData(action.type, action.data),
-      };
-    case "America":
-      console.log("mama america");
-      return {
-        countries: action.data,
-        filter: filterData(action.type, action.data),
-      };
+    case "Americas":
     case "Asia":
-      console.log("mama asia");
-      return {
-        countries: action.data,
-        filter: filterData(action.type, action.data),
-      };
     case "Europe":
-      console.log("mama europe");
-      return {
-        countries: action.data,
-        filter: filterData(action.type, action.data),
-      };
     case "Oceania":
-      console.log("mama oceania");
+      temp = filterData(action.type, action.data);
+      console.log(temp);
       return {
-        countries: action.data,
-        filter: filterData(action.type, action.data),
+        firstVisit: false,
+        filter: temp,
       };
     default:
       return state;
@@ -50,27 +33,21 @@ const reducer = (state, action) => {
 };
 
 const filterData = (region, data) => {
-  // console.log("we are filtering " + region);
-  // console.log("here is the data ");
-  // console.log(data);
   const myList = data.filter((el) => el.region === region);
-  // console.log("after filter");
-  // console.log(myList);
-  // initialState.firstShow = false;
   return myList;
 };
 
-const init = (data) => {
-  initialState.filter = data;
-};
 const MainComp = ({ data }) => {
   const [input, setInput] = useState("");
   const [showRegions, setShowRegions] = useState(false);
-  const [state, dispatch] = useReducer(reducer, initialState, init(data));
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  // check if its the first visit, all data or filtred data
+  const dataToShow = state.firstVisit ? data : state.filter;
 
   useEffect(() => {
     console.log("just tsting");
-  }, [initialState.filter]);
+  }, []);
   return (
     <MainWrapper>
       <Search>
@@ -97,7 +74,7 @@ const MainComp = ({ data }) => {
             <Region onClick={() => dispatch({ type: "Africa", data: data })}>
               Africa
             </Region>
-            <Region onClick={() => dispatch({ type: "America", data: data })}>
+            <Region onClick={() => dispatch({ type: "Americas", data: data })}>
               America
             </Region>
             <Region onClick={() => dispatch({ type: "Asia", data: data })}>
@@ -115,7 +92,7 @@ const MainComp = ({ data }) => {
         )}
       </Filter>
       <Countries>
-        {initialState.filter.map((el) => (
+        {dataToShow.map((el) => (
           <Country key={el.name.common}>
             <Flag src={el.flags.png} />
             <Infos>

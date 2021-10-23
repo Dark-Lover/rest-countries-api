@@ -127,13 +127,14 @@ export const Countries = styled.div`
   padding: 1rem 2rem;
   flex-wrap: wrap;
 `;
-export const Country = styled.div`
+export const Country = styled.a`
   max-width: 300px;
   background-color: ${(props) => props.theme.bgEls};
   width: 100%;
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
   margin: 1rem;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const Flag = styled.img`
