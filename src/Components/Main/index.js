@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useReducer } from "react";
 //prettier-ignore
 import {MainWrapper,Search,SearchInput,Filter,FilterBtn,FilterText,
-  Regions,Region,FakeCheck,OpenList,Countries,Country,Flag,Infos,CountryName,Detail,Info
+  Regions,Region,FakeCheck,OpenList,Countries,Country,Flag,Infos,CountryName,Detail,Info,StyledLink
 } from "./MainComp";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const initialState = {
   firstVisit: true,
@@ -22,7 +21,6 @@ const reducer = (state, action) => {
     case "Europe":
     case "Oceania":
       temp = filterData(action.type, action.data);
-      console.log(temp);
       return {
         firstVisit: false,
         filter: temp,
@@ -94,20 +92,27 @@ const MainComp = ({ data }) => {
       <Countries>
         {dataToShow.map((el) => (
           <Country key={el.name.common}>
-            <Flag src={el.flags.png} />
-            <Infos>
-              <CountryName>{el.name.common}</CountryName>
-              <Detail>
-                <Info>Population:</Info> {(el.population / 1000000).toFixed(2)}{" "}
-                M hab
-              </Detail>
-              <Detail>
-                <Info>Region:</Info> {el.region}
-              </Detail>
-              <Detail>
-                <Info>Capital:</Info> {el.capital}
-              </Detail>
-            </Infos>
+            <StyledLink
+              to={{
+                pathname: `/${el.name.common}`,
+                state: { infos: el },
+              }}
+            >
+              <Flag src={el.flags.png} />
+              <Infos>
+                <CountryName>{el.name.common}</CountryName>
+                <Detail>
+                  <Info>Population:</Info>{" "}
+                  {(el.population / 1000000).toFixed(2)} M hab
+                </Detail>
+                <Detail>
+                  <Info>Region:</Info> {el.region}
+                </Detail>
+                <Detail>
+                  <Info>Capital:</Info> {el.capital}
+                </Detail>
+              </Infos>
+            </StyledLink>
           </Country>
         ))}
       </Countries>

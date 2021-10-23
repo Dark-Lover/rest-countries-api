@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const MainWrapper = styled.main`
   display: flex;
@@ -127,13 +128,16 @@ export const Countries = styled.div`
   padding: 1rem 2rem;
   flex-wrap: wrap;
 `;
-export const Country = styled.a`
+export const Country = styled.div`
   max-width: 300px;
   background-color: ${(props) => props.theme.bgEls};
   width: 100%;
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
   margin: 1rem;
   cursor: pointer;
+`;
+
+export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
@@ -153,7 +157,7 @@ export const CountryName = styled.h2`
   margin-bottom: 1rem;
   color: ${(props) => props.theme.colorText};
 `;
-export const Detail = styled.h3`
+export const Detail = styled.div`
   font-size: 0.8rem;
   font-weight: 300;
   padding: 0.1rem 0 0.1rem 0;

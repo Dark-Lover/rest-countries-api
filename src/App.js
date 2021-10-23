@@ -6,7 +6,8 @@ import DarkMode from "./Themes/Dark";
 import LightMode from "./Themes/Light";
 import GlobalStyle from "./Themes/GloStyles";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { DetailCountry } from "./Pages/DetailCountry";
 
 const Themes = {
   Light: LightMode,
@@ -35,14 +36,19 @@ function App() {
   }, []);
   const fetchAllData = async () => {
     try {
-      axios.get("https://restcountries.com/v3.1/all").then((res) => {
-        setisLoading(false);
-        setData(res.data);
-        setFetched(true);
-        // res.data.map((el) => console.log(el.name.common));
-      });
+      axios
+        .get("https://restcountries.com/v3.1/all")
+        .then((res) => {
+          setisLoading(false);
+          setData(res.data);
+          setFetched(true);
+        })
+        .catch((err) => {
+          console.log(`axios Get: Something went wrong ${err}`);
+        });
     } catch (err) {
-      console.log(`fuuck` + err);
+      console.log(`Fetching Data`);
+      console.log(err);
     }
   };
   return (
@@ -51,7 +57,18 @@ function App() {
         <GlobalStyle />
         <div className="App">
           <Navbar theme={theme} setTheme={setTheme} />
-          {data === "" ? <h1>We are looooading</h1> : <MainComp data={data} />}
+          <Switch>
+            <Route path="/" exact>
+              {data === "" ? (
+                <h1>We are looooading</h1>
+              ) : (
+                <MainComp data={data} />
+              )}
+            </Route>
+            <Route path="/:country" exact>
+              <DetailCountry />
+            </Route>
+          </Switch>
         </div>
       </ThemeProvider>
     </Router>
