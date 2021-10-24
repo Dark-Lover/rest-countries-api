@@ -87,6 +87,7 @@ export const DeBorders = styled(Info)`
 `;
 export const Borders = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 export const Border = styled.div`
   background-color: ${(props) => props.theme.bgEls};
@@ -95,7 +96,7 @@ export const Border = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 5rem;
+  min-width: 5rem;
   height: 1.7rem;
   margin: 1rem 1rem 2rem 0;
   padding: 0 0.8rem;

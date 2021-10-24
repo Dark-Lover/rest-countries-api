@@ -70,9 +70,11 @@ export const DetailCountry = () => {
           <DeBorders>
             <Info>Border Countries:</Info>
             <Borders>
-              {infos.borders.map((bor) => (
-                <Border key={bor}>{bor}</Border>
-              ))}
+              {infos.borders ? (
+                infos.borders.map((bor) => <Border key={bor}>{bor}</Border>)
+              ) : (
+                <Border>No Borders</Border>
+              )}
             </Borders>
           </DeBorders>
         </DataSep>

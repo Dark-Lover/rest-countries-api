@@ -42,7 +42,9 @@ const MainComp = ({ data }) => {
 
   // check if its the first visit, all data or filtred data
   const dataToShow = state.firstVisit ? data : state.filter;
-
+  console.log("#### First Visit ###");
+  console.log(state.firstVisit);
+  console.log("#### First Visit ###");
   useEffect(() => {
     console.log("just tsting");
   }, []);
