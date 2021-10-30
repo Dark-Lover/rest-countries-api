@@ -5,9 +5,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter basename="/rest-countries-api">
-      <App />
-    </HashRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

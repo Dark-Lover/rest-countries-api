@@ -35,22 +35,22 @@ function App() {
     }
   };
   return (
-    // <Router>
-    <ThemeProvider theme={Themes[theme]}>
-      <GlobalStyle />
-      <div className="App">
-        <Navbar theme={theme} setTheme={setTheme} />
-        <Switch>
-          <Route path="/" exact>
-            {data === "" ? <Loading /> : <MainComp data={data} />}
-          </Route>
-          <Route path="/:country" exact>
-            <DetailCountry />
-          </Route>
-        </Switch>
-      </div>
-    </ThemeProvider>
-    // </Router>
+    <Router basename="/rest-countries-api">
+      <ThemeProvider theme={Themes[theme]}>
+        <GlobalStyle />
+        <div className="App">
+          <Navbar theme={theme} setTheme={setTheme} />
+          <Switch>
+            <Route path="/" exact>
+              {data === "" ? <Loading /> : <MainComp data={data} />}
+            </Route>
+            <Route path="/:country" exact>
+              <DetailCountry />
+            </Route>
+          </Switch>
+        </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 
