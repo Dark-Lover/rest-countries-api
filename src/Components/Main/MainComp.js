@@ -9,6 +9,14 @@ export const MainWrapper = styled.main`
   padding: 0 1rem;
   transition: all 0.5s ease;
 `;
+export const FunWrap = styled.main`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 600px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
 // Search Styling
 export const Search = styled.div`
   background-color: ${(props) => props.theme.bgEls};
@@ -26,6 +34,9 @@ export const Search = styled.div`
     font-size: 1.4rem;
     color: ${(props) => props.theme.colorSec};
     font-weight: 400;
+  }
+  @media (min-width: 600px) {
+    max-width: 270px;
   }
 `;
 
@@ -59,6 +70,10 @@ export const Filter = styled.div`
   padding: 0 1rem;
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
   transition: all 0.5s ease;
+  @media (min-width: 600px) {
+    max-width: 270px;
+    margin: 5.5rem 0 0 0;
+  }
 `;
 export const FilterBtn = styled.div`
   position: relative;
@@ -124,7 +139,6 @@ export const Region = styled.div`
 export const Countries = styled.div`
   display: flex;
   justify-content: center;
-  /* flex-direction: column; */
   padding: 1rem 2rem;
   flex-wrap: wrap;
 `;
@@ -135,6 +149,9 @@ export const Country = styled.div`
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
   margin: 1rem;
   cursor: pointer;
+  @media (min-width: 600) {
+    max-width: 250px;
+  }
 `;
 
 export const StyledLink = styled(Link)`

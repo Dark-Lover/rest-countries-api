@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer } from "react";
 //prettier-ignore
-import {MainWrapper,Search,SearchInput,Filter,FilterBtn,FilterText,
+import {MainWrapper,FunWrap,Search,SearchInput,Filter,FilterBtn,FilterText,
   Regions,Region,FakeCheck,OpenList,Countries,Country,Flag,Infos,CountryName,Detail,Info,StyledLink
 } from "./MainComp";
 import { BiSearchAlt2 } from "react-icons/bi";
@@ -35,62 +35,100 @@ const filterData = (region, data) => {
   return myList;
 };
 
+const handleInput = (data, input) => {
+  let toShow = data.filter((el) =>
+    el.name.common.toLowerCase().includes(input)
+  );
+  return toShow;
+};
+
 const MainComp = ({ data }) => {
   const [input, setInput] = useState("");
   const [showRegions, setShowRegions] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // check if its the first visit, all data or filtred data
-  const dataToShow = state.firstVisit ? data : state.filter;
-  console.log("#### First Visit ###");
-  console.log(state.firstVisit);
-  console.log("#### First Visit ###");
-  useEffect(() => {
-    console.log("just tsting");
-  }, []);
+  // let dataToShow = state.firstVisit ? data : state.filter;
+  let dataToShow =
+    input !== ""
+      ? handleInput(data, input)
+      : state.firstVisit
+      ? data
+      : state.filter;
+
+  useEffect(() => {}, [dataToShow]);
   return (
     <MainWrapper>
-      <Search>
-        <BiSearchAlt2 className="SearchIcon" />
-        <SearchInput
-          placeholder="Search for a country.."
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <h2>{input}</h2>
-      </Search>
-      <Filter>
-        <FilterBtn>
-          <FilterText>Filter by Region</FilterText>
-          <OpenList>
-            <FakeCheck
-              type="checkbox"
-              onClick={() => setShowRegions(!showRegions)}
-            />
-            <MdKeyboardArrowUp className="upDown" />
-          </OpenList>
-        </FilterBtn>
-        {showRegions ? (
-          <Regions>
-            <Region onClick={() => dispatch({ type: "Africa", data: data })}>
-              Africa
-            </Region>
-            <Region onClick={() => dispatch({ type: "Americas", data: data })}>
-              America
-            </Region>
-            <Region onClick={() => dispatch({ type: "Asia", data: data })}>
-              Asia
-            </Region>
-            <Region onClick={() => dispatch({ type: "Europe", data: data })}>
-              Europe
-            </Region>
-            <Region onClick={() => dispatch({ type: "Oceania", data: data })}>
-              Oceania
-            </Region>
-          </Regions>
-        ) : (
-          ""
-        )}
-      </Filter>
+      <FunWrap>
+        <Search>
+          <BiSearchAlt2 className="SearchIcon" />
+          <SearchInput
+            placeholder="Search for a country.."
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+          />
+        </Search>
+        <Filter>
+          <FilterBtn>
+            <FilterText>Filter by Region</FilterText>
+            <OpenList>
+              <FakeCheck
+                type="checkbox"
+                onClick={() => setShowRegions(!showRegions)}
+              />
+              <MdKeyboardArrowUp className="upDown" />
+            </OpenList>
+          </FilterBtn>
+          {showRegions ? (
+            <Regions>
+              <Region
+                onClick={() => {
+                  setShowRegions(!showRegions);
+                  dispatch({ type: "Africa", data: data });
+                }}
+              >
+                Africa
+              </Region>
+              <Region
+                onClick={() => {
+                  setShowRegions(!showRegions);
+                  dispatch({ type: "Americas", data: data });
+                }}
+              >
+                America
+              </Region>
+              <Region
+                onClick={() => {
+                  setShowRegions(!showRegions);
+                  dispatch({ type: "Asia", data: data });
+                }}
+              >
+                Asia
+              </Region>
+              <Region
+                onClick={() => {
+                  setShowRegions(!showRegions);
+                  dispatch({ type: "Europe", data: data });
+                }}
+              >
+                Europe
+              </Region>
+              <Region
+                onClick={() => {
+                  setShowRegions(!showRegions);
+                  dispatch({ type: "Oceania", data: data });
+                }}
+              >
+                Oceania
+              </Region>
+            </Regions>
+          ) : (
+            ""
+          )}
+        </Filter>
+      </FunWrap>
+
       <Countries>
         {dataToShow.map((el) => (
           <Country key={el.name.common}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useParams } from "react-router";
+import { useLocation } from "react-router";
 import { BsArrowLeft } from "react-icons/bs";
 //prettier-ignore
 import {
@@ -10,11 +10,8 @@ import {BackBtn,CouInfos,DeInfos,DeContainer,DeBorders,Borders,Border,DeFlag,Par
 } from "./DetailStyled";
 
 export const DetailCountry = () => {
-  console.log("here in detail");
-  const { country } = useParams();
   const location = useLocation();
   const { infos } = location.state;
-  console.log(infos);
 
   return (
     <MainWrapper>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Logo, Mode, MyMode, ModeText } from "./NavbarComps";
+import { Nav, Logo, Mode, MyMode, ModeText, LogoLink } from "./NavbarComps";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 const Navbar = ({ theme, setTheme }) => {
@@ -9,7 +9,7 @@ const Navbar = ({ theme, setTheme }) => {
   };
   return (
     <Nav>
-      <Logo>Where in the world?</Logo>
+      <LogoLink to={{ pathname: `/` }}>Where in the world?</LogoLink>
       <Mode onClick={changeTheme}>
         {theme === "Light" ? (
           <MyMode>

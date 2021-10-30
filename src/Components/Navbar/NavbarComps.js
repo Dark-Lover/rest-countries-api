@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
   height: 12vh;
@@ -13,12 +14,16 @@ export const Nav = styled.nav`
   left: 0;
   width: 100%;
   box-shadow: 0px 1px 16px 0px ${(props) => props.theme.shadow};
+  z-index: 10000;
 `;
 
-export const Logo = styled.div`
+export const LogoLink = styled(Link)`
+  color: ${(props) => props.theme.colorText};
+  text-decoration: none;
   font-weight: 800;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
+  cursor: pointer;
 `;
 
 export const Mode = styled.div`
