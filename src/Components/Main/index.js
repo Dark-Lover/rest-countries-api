@@ -4,7 +4,7 @@ import {MainWrapper,FunWrap,Search,SearchInput,Filter,FilterBtn,FilterText,
   Regions,Region,FakeCheck,OpenList,Countries,Country,Flag,Infos,CountryName,Detail,Info,StyledLink
 } from "./MainComp";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 const initialState = {
   firstVisit: true,
@@ -77,7 +77,7 @@ const MainComp = ({ data }) => {
                 type="checkbox"
                 onClick={() => setShowRegions(!showRegions)}
               />
-              <MdKeyboardArrowUp className="upDown" />
+              {showRegions ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
             </OpenList>
           </FilterBtn>
           {showRegions ? (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Logo, Mode, MyMode, ModeText, LogoLink } from "./NavbarComps";
+import { Nav, Mode, MyMode, ModeText, LogoLink } from "./NavbarComps";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 const Navbar = ({ theme, setTheme }) => {

@@ -1,14 +1,15 @@
 import MainComp from "./Components/Main";
 import Navbar from "./Components/Navbar";
 import { ThemeProvider } from "styled-components";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DarkMode from "./Themes/Dark";
 import LightMode from "./Themes/Light";
 import GlobalStyle from "./Themes/GloStyles";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { DetailCountry } from "./Pages/DetailCountry";
 import Loading from "./Components/Loading/Loading";
+
 const Themes = {
   Light: LightMode,
   Dark: DarkMode,
